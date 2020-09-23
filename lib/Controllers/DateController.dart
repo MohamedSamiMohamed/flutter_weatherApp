@@ -4,34 +4,31 @@ import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart';
 import 'package:intl/intl.dart';
 import 'package:weather_app/network/DateRequest.dart';
-import 'package:provider/provider.dart';
+import 'package:get/get.dart';
 
-class DateProvider extends ChangeNotifier {
+class DateController extends GetxController {
   String city;
-  String time;
-  bool _isDayTime;
+  var time = ''.obs;
+  var isDayTime = false.obs;
   String location;
 
-  bool get isDayTime => _isDayTime;
-
-  void setIsDayTime(bool isDayTime) {
-    _isDayTime = isDayTime;
-    notifyListeners();
+  void setIsDayTime(var isDayTime) {
+    this.isDayTime.value = isDayTime;
+    update();
   }
 
-  void changeTime(String newTime) {
-    time = newTime;
-    notifyListeners();
+  void changeTime(var newTime) {
+    this.time.value = newTime;
+    update();
   }
 
-  DateProvider({this.city});
+  DateController({this.city});
   bool _isLoading = true;
 
   bool get isLoading => _isLoading;
 
   set isLoading(bool isLoading) {
     _isLoading = isLoading;
-    notifyListeners();
   }
 
   Future<void> getDate(city, BuildContext context) async {
@@ -47,10 +44,8 @@ class DateProvider extends ChangeNotifier {
         DateTime now = DateTime.parse(dateTime);
         now = now.add(Duration(hours: int.parse(offset)));
         bool tempIsDayTime = now.hour > 6 && now.hour < 18 ? true : false;
-        Provider.of<DateProvider>(context, listen: false)
-            .setIsDayTime(tempIsDayTime);
-        Provider.of<DateProvider>(context, listen: false)
-            .changeTime(DateFormat.jm().format(now));
+        Get.find<DateController>().setIsDayTime(tempIsDayTime);
+        Get.find<DateController>().changeTime(DateFormat.jm().format(now));
       } else {
         print('failed');
       }

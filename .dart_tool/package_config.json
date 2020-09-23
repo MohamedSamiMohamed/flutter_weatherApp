@@ -68,6 +68,48 @@
       "languageVersion": "2.2"
     },
     {
+      "name": "get",
+      "rootUri": "file:///E:/flutter/flutter_windows_1.20.3-stable/flutter/.pub-cache/hosted/pub.dartlang.org/get-3.11.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.8"
+    },
+    {
+      "name": "get_core",
+      "rootUri": "file:///E:/flutter/flutter_windows_1.20.3-stable/flutter/.pub-cache/hosted/pub.dartlang.org/get_core-3.10.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.7"
+    },
+    {
+      "name": "get_instance",
+      "rootUri": "file:///E:/flutter/flutter_windows_1.20.3-stable/flutter/.pub-cache/hosted/pub.dartlang.org/get_instance-3.10.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.7"
+    },
+    {
+      "name": "get_navigation",
+      "rootUri": "file:///E:/flutter/flutter_windows_1.20.3-stable/flutter/.pub-cache/hosted/pub.dartlang.org/get_navigation-3.10.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.7"
+    },
+    {
+      "name": "get_rx",
+      "rootUri": "file:///E:/flutter/flutter_windows_1.20.3-stable/flutter/.pub-cache/hosted/pub.dartlang.org/get_rx-3.10.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.7"
+    },
+    {
+      "name": "get_state_manager",
+      "rootUri": "file:///E:/flutter/flutter_windows_1.20.3-stable/flutter/.pub-cache/hosted/pub.dartlang.org/get_state_manager-3.10.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.7"
+    },
+    {
+      "name": "get_utils",
+      "rootUri": "file:///E:/flutter/flutter_windows_1.20.3-stable/flutter/.pub-cache/hosted/pub.dartlang.org/get_utils-3.10.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.7"
+    },
+    {
       "name": "http",
       "rootUri": "file:///E:/flutter/flutter_windows_1.20.3-stable/flutter/.pub-cache/hosted/pub.dartlang.org/http-0.12.2",
       "packageUri": "lib/",
@@ -182,7 +224,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2020-09-20T15:07:26.597887Z",
+  "generated": "2020-09-23T10:45:04.384142Z",
   "generator": "pub",
   "generatorVersion": "2.10.0-135.0.dev"
 }

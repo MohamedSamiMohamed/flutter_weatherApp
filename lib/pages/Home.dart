@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/Providers/DateProvider.dart';
+import 'package:weather_app/Controllers/DateController.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:get/get.dart';
+import 'package:weather_app/pages/location.dart';
 
 class HomeWeather extends StatefulWidget {
   @override
@@ -9,29 +11,26 @@ class HomeWeather extends StatefulWidget {
 }
 
 class _HomeWeatherState extends State<HomeWeather> {
+  final DateController controller = Get.put(DateController());
   Map data = {};
   String location = 'Africa/Cairo';
-  DateProvider date = DateProvider(city: 'Cairo');
+  DateController date = DateController(city: 'Cairo');
   void setupTime() async {
     await date.getDate(location, context);
-  }
-
-  @override
-  void initState() {
-    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     data = ModalRoute.of(context).settings.arguments;
     if (data != null) {
-      date = DateProvider(city: data['city']);
+      date = DateController(city: data['city']);
       location = data['location'];
-      Provider.of<DateProvider>(context, listen: false).changeTime(null);
+      controller.changeTime('');
     }
     setupTime();
-    return Consumer<DateProvider>(builder: (context, dateProvider, child) {
-      if (dateProvider.time == null) {
+    String image;
+    return Obx(() {
+      if (controller.time.value == '') {
         return Scaffold(
           backgroundColor: Colors.blue,
           body: Center(
@@ -42,7 +41,11 @@ class _HomeWeatherState extends State<HomeWeather> {
           ),
         );
       } else {
-        String image = dateProvider.isDayTime ? 'day.png' : 'night.png';
+        if (controller.isDayTime.value) {
+          image = 'day.png';
+        } else {
+          image = 'night.png';
+        }
         return Scaffold(
           body: SafeArea(
               child: Container(
@@ -58,7 +61,7 @@ class _HomeWeatherState extends State<HomeWeather> {
                 children: <Widget>[
                   FlatButton.icon(
                     onPressed: () {
-                      Navigator.pushNamed(context, '/location');
+                      Get.to(ChooseLocation());
                     },
                     icon: Icon(
                       Icons.edit_location,
@@ -89,10 +92,12 @@ class _HomeWeatherState extends State<HomeWeather> {
                   SizedBox(
                     height: 20,
                   ),
-                  Text(
-                    dateProvider.time,
-                    style: TextStyle(fontSize: 66),
-                  )
+                  Obx(() {
+                    return Text(
+                      '${controller.time}',
+                      style: TextStyle(fontSize: 66),
+                    );
+                  }),
                 ],
               ),
             ),

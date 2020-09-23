@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/models/world_time.dart';
+import 'package:weather_app/models/CountryItem.dart';
 
 class ChooseLocation extends StatefulWidget {
   @override
